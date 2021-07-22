@@ -10,7 +10,7 @@ document.querySelector('.busca').addEventListener('submit', async (event) => { /
         let results = await fetch(url);
         let json = await results.json(); // pega o resultado e transforma em Json, await é para aguardar 
 
-        if(json.cod === 200) {
+        if (json.cod === 200) {
             showInfo({
                 name: json.name,
                 country: json.sys.country,
@@ -31,20 +31,20 @@ document.querySelector('.busca').addEventListener('submit', async (event) => { /
 function showInfo(json) {
     showWarning('');
 
-    document.querySelector('.resultado').style.display = 'block';
-
     document.querySelector('.titulo').innerHTML = `${json.name}, ${json.country}`;
     document.querySelector('.tempInfo').innerHTML = `${json.temp} <sup>°C</sup>`;
     document.querySelector('.ventoInfo').innerHTML = `${json.windSpeed} <span>Km/h</Span>`
     document.querySelector('.temp img').setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}@2x.png`)
     document.querySelector('.ventoPonto').style.transform = `rotate(${json.windAngle - 90}deg)`;
+
+    document.querySelector('.resultado').style.display = 'block';
 }
 
 function showWarning(msg) {
     document.querySelector('.aviso').innerHTML = msg;
 }
 
-function clearInfo(){
+function clearInfo() {
     showWarning('');
     document.querySelector('.resultado').style.display = 'none';
 }
